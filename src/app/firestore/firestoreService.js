@@ -52,3 +52,18 @@ export function cancelEventToggle(event) {
     isCancelled: !event.isCancelled,
   });
 }
+
+export function setUserProfile(user) {
+  // previously we user add function to add new data, but
+  // here we use set (ref the doc itself even though we need to create it at the same time)
+  // cuz we use user.uid as the doc id
+  return db
+    .collection("user")
+    .doc(user.uid)
+    .set({
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL || null,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+}
