@@ -14,16 +14,16 @@ export default function SignedInMenu() {
       toast.error(error.message);
     }
   }
-  const { currentUser } = useSelector((state) => state.auth);
+  const { currentUserProfile } = useSelector((state) => state.profile);
   const history = useHistory();
   return (
     <Menu.Item position="right">
       <Image
         avatar
         spaced="right"
-        src={currentUser.photoURL || "/assets/user.png"}
+        src={currentUserProfile.photoURL || "/assets/user.png"}
       />
-      <Dropdown pointing="top left" text={currentUser.displayName}>
+      <Dropdown pointing="top left" text={currentUserProfile.displayName}>
         <Dropdown.Menu>
           <Dropdown.Item
             as={Link}
@@ -31,7 +31,12 @@ export default function SignedInMenu() {
             text="Create Event"
             icon="plus"
           />
-          <Dropdown.Item text="My Profile" icon="user" />
+          <Dropdown.Item
+            text="My Profile"
+            icon="user"
+            as={Link}
+            to={`/profile/${currentUserProfile?.id}`}
+          />
           <Dropdown.Item
             as={Link}
             to="/account"

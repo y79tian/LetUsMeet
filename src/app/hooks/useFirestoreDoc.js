@@ -15,7 +15,6 @@ export default function useFirestoreDoc({
   shouldExecute = true,
 }) {
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (!shouldExecute) return;
     dispatch(asyncActionStart());
@@ -30,6 +29,7 @@ export default function useFirestoreDoc({
           );
           return;
         }
+
         data(dataFromSnapshot(snapshot));
         dispatch(asyncActionFinish());
       },
