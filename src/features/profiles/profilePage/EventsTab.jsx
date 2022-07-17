@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { format } from "date-fns";
-import { Card, Grid, Header, Tab, Image, StepTitle } from "semantic-ui-react";
+import { Card, Grid, Header, Tab, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useFirestoreCollection from "../../../app/hooks/useFirestoreCollection";
