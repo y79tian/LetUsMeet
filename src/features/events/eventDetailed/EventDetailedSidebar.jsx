@@ -23,9 +23,6 @@ export default function EventDetailedSidebar({ attendees, hostUid }) {
               to={`/profile/${attendee.id}`}
               key={attendee.id}
               style={{ position: "relative" }}
-              color="orange"
-              ribbon="right"
-              content="Host"
             >
               {hostUid === attendee.id && (
                 <Label
