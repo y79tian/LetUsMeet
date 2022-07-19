@@ -139,10 +139,16 @@ export async function setMainPhoto(photo) {
     .collection("events")
     .where("attendeeIds", "array-contains", user.uid)
     .where("date", ">=", today);
+    
   const userFollowingRef = db
     .collection("following")
     .doc(user.uid)
     .collection("userFollowing");
+
+    const userFollowerRef = db
+    .collection("following")
+    .doc(user.uid)
+    .collection("userFollowers");
 
   const batch = db.batch();
 
@@ -182,6 +188,20 @@ export async function setMainPhoto(photo) {
         .doc(user.uid);
 
       batch.update(followingDocRef, {
+        photoURL: photo.url,
+      });
+    });
+
+    const userFollowersSnap = await userFollowerRef.get();
+
+    userFollowersSnap.docs.forEach((docRef) => {
+      let followerDocRef = db
+        .collection("following")
+        .doc(docRef.id)
+        .collection("userFollowing")
+        .doc(user.uid);
+
+      batch.update(followerDocRef, {
         photoURL: photo.url,
       });
     });
