@@ -12,7 +12,6 @@ import {
 import { toast } from "react-toastify";
 import {
   followUser,
-  getFollowersCollection,
   getFollowingDoc,
   unfollowUser,
 } from "../../../app/firestore/firestoreService";

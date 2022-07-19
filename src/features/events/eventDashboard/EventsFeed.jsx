@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { Feed, FeedDate, Header, Segment } from "semantic-ui-react";
+import { Feed, Header, Segment } from "semantic-ui-react";
 import {
   firebaseObjectToArray,
   getUserFeedRef,

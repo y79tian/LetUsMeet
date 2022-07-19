@@ -1,8 +1,7 @@
 import React from "react";
-import { act } from "react-dom/test-utils";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { Button, Card, Grid, Header, Tab } from "semantic-ui-react";
+import { Card, Grid, Header, Tab } from "semantic-ui-react";
 import {
   getFollowersCollection,
   getFollowingCollection,
