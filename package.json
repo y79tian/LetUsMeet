@@ -31,7 +31,14 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
     "web-vitals": "1.0.1",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
