@@ -14,7 +14,7 @@ export default function NavBar({ setFormOpen }) {
         {/* note exact here */}
         <Menu.Item exact as={NavLink} to="/" header>
           <img src="/assets/logo.png" alt="logo" style={{ marginRight: 15 }} />
-          Re-vents
+          LetUsMeet
         </Menu.Item>
         <Menu.Item name="Events" as={NavLink} to="/events" />
         {/* <Menu.Item name="Sandbox" as={NavLink} to="/sandbox" /> */}

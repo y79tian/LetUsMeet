@@ -6,6 +6,9 @@ import {
   LISTEN_TO_EVENT_CHAT,
   LISTEN_TO_SELECTED_EVENT,
   CLEAR_EVENTS,
+  SET_FILTER,
+  SET_START_DATE,
+  CLEAR_SELECTED_EVENT
 } from "./eventConstants";
 import {
   asyncActionError,
@@ -17,24 +20,38 @@ import {
   fetchEventsFromFirestore,
 } from "../../app/firestore/firestoreService";
 
-export function fetchEvents(predicate, limit, lastDocSnapshot) {
+export function fetchEvents(filter, startDate, limit, lastDocSnapshot) {
   return async function (dispatch) {
     dispatch(asyncActionStart());
     try {
       const snapshot = await fetchEventsFromFirestore(
-        predicate,
+        filter,
+        startDate,
         limit,
         lastDocSnapshot
       ).get();
       const lastVisible = snapshot.docs[snapshot.docs.length - 1]; // store the last doc in last visible
       const moreEvents = snapshot.docs.length >= limit; // check if potential more doc in the next page
       const events = snapshot.docs.map((doc) => dataFromSnapshot(doc));
-      dispatch({ type: FETCH_EVENT, payload: { events, moreEvents } });
+      dispatch({ type: FETCH_EVENT, payload: { events, moreEvents, lastVisible } });
       dispatch(asyncActionFinish());
-      return lastVisible;
     } catch (error) {
       dispatch(asyncActionError(error));
     }
+  };
+}
+
+export function setFilter(value) {
+  return function (dispatch) {
+    dispatch(clearEvents());
+    dispatch({ type: SET_FILTER, payload: value });
+  };
+}
+
+export function setStartDate(date) {
+  return function (dispatch) {
+    dispatch(clearEvents());
+    dispatch({ type: SET_START_DATE, payload: date });
   };
 }
 
@@ -74,4 +91,10 @@ export function clearEvents() {
   return {
     type: CLEAR_EVENTS,
   };
+}
+
+export function clearSelectedEvent() {
+	return {
+		type: CLEAR_SELECTED_EVENT,
+	};
 }

@@ -25,7 +25,7 @@ export default function AboutTab({ profile, isCurrentUser }) {
         </Grid.Column>
         <Grid.Column width={16}>
           {editMode ? (
-            <ProfileForm profile={profile} />
+            <ProfileForm profile={profile} setEditMode={setEditMode} />
           ) : (
             <>
               <div style={{ marginBottom: 10 }}>

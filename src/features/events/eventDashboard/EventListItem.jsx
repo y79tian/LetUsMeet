@@ -11,7 +11,6 @@ import {
 } from "semantic-ui-react";
 import EventListAttendee from "./EventListAttendee";
 import { format } from "date-fns";
-import { deleteEventInFirestore } from "../../../app/firestore/firestoreService";
 
 export default function EventListItem({ event }) {
   return (
@@ -55,12 +54,6 @@ export default function EventListItem({ event }) {
       </Segment>
       <Segment clearing>
         <div>{event.description}</div>
-        <Button
-          color="red"
-          floated="right"
-          content="Delete"
-          onClick={() => deleteEventInFirestore(event.id)}
-        />
         <Button
           color="teal"
           floated="right"
